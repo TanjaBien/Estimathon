@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import os
 import math
-import uuid
 import json
 
 st.set_page_config(page_title="Estimathon", layout="wide")
@@ -56,7 +55,7 @@ def calculate_score(team_df):
                 good += 1
                 ratios[q] = ratio
 
-    score = (10 + sum(ratios.values())) * (2 ** (13 - good))
+    score = (10 + sum(ratios.values())) * (2 ** (len(QUESTIONS) - good))
     return round(score, 2)
 
 def get_status_display(team, history):
@@ -68,6 +67,7 @@ def get_status_display(team, history):
 
     for q in QUESTIONS:
         attempts = history[team].get(q, [])
+        attempts = list(dict.fromkeys(attempts))
         attempt_list = []
         for min_val, max_val in attempts:
             if min_val <= true_vals[q] <= max_val:
@@ -77,6 +77,7 @@ def get_status_display(team, history):
                 attempt_list.append("✖")
         status[q] = " ".join(attempt_list)
     return status
+
 
 def rebuild_session_state_from_csv():
     answers_df = load_answers()
@@ -156,8 +157,7 @@ with st.form("submit_form", clear_on_submit=True):
 if submitted:
     teams_df = load_teams()
     if team_input not in teams_df["team"].values:
-        print(team_input)
-        st.error("Team does not exist. Please add it first.")
+        st.error(f"Team {team_input} does not exist. Please add it first.")
     elif min_input <= 0 or max_input <= 0 or max_input < min_input:
         st.error("Invalid interval.")
     else:
