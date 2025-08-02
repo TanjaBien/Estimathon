@@ -1,3 +1,6 @@
+# Esimathon App - .gitignore file
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

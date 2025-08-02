@@ -111,7 +111,7 @@ if st.sidebar.button("➕ Add Team"):
     if new_team and new_team not in teams_df["team"].values:
         teams_df = pd.concat([teams_df, pd.DataFrame([{"team": new_team}])], ignore_index=True)
         save_teams(teams_df)
-        st.sidebar.success(f"Team {new_team} hinzugefügt.")
+        st.sidebar.success(f"Team {new_team} added.")
     else:
         st.sidebar.warning("Invalid or already existing team.")
 
@@ -145,9 +145,9 @@ max_key = "max_key"
 with st.form("submit_form", clear_on_submit=True):
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        team_input = st.text_input("Teamkürzel", key=team_key).strip().upper()
+        team_input = st.text_input("Team", key=team_key).strip().upper()
     with col2:
-        question_input = st.selectbox("Fragenummer", QUESTIONS)
+        question_input = st.selectbox("Question number", QUESTIONS)
     with col3:
         min_input = st.number_input("Minimum", min_value=0, step=1, format="%d", key=min_key)
     with col4:
