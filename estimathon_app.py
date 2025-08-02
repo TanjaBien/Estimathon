@@ -129,20 +129,19 @@ if st.sidebar.button("🗑️ Delete Session"):
     st.session_state.submission_history = {}
     st.session_state.submission_counts = {}
 
-    st.success("Alle Teams und Antworten wurden gelöscht.")
+    st.success("All teams and answers deleted.")
     st.rerun()
 
-# --- UI: Abgabeformular ---
-st.header("📥 Antwort einreichen")
+# --- UI: Submission Form ---
+st.header("📥 Submit Answer")
 
 answers_df = load_answers()
 
-form_suffix = str(uuid.uuid4())  # generates a unique key each time the form reruns
-team_key = f"team_{form_suffix}"
-min_key = f"min_{form_suffix}"
-max_key = f"max_{form_suffix}"
+team_key = "team_key"
+min_key = "min_key"
+max_key = "max_key"
 
-with st.form("submit_form"):
+with st.form("submit_form", clear_on_submit=True):
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         team_input = st.text_input("Teamkürzel", key=team_key).strip().upper()
@@ -155,7 +154,9 @@ with st.form("submit_form"):
     submitted = st.form_submit_button("✅ Save Submission")
 
 if submitted:
+    teams_df = load_teams()
     if team_input not in teams_df["team"].values:
+        print(team_input)
         st.error("Team does not exist. Please add it first.")
     elif min_input <= 0 or max_input <= 0 or max_input < min_input:
         st.error("Invalid interval.")
@@ -176,6 +177,7 @@ if submitted:
             }])
             answers_df = pd.concat([answers_df, new_row], ignore_index=True)
             save_answers(answers_df)
+            rebuild_session_state_from_csv()
 
 
             # Append to session history
@@ -190,21 +192,18 @@ if submitted:
             counts[team_input] = current_count + 1
             st.session_state.submission_counts = counts
 
-            st.success(f"Antwort für Team {team_input}, Frage {question_input} gespeichert!")
-
+            st.success(f"Answer for team {team_input}, question {question_input} saved!")
+            for key in ["team_input", "min_input", "max_input"]:
+                if key in st.session_state:
+                    del st.session_state[key]
             st.rerun()
-
-    for k in [team_key, min_key, max_key]:
-        if k in st.session_state:
-            del st.session_state[k]
-    st.rerun()
-        
 
 # --- UI: Scoreboard ---
 st.header("📊 Live-Scoreboard")
 
+teams_df = load_teams()
 if teams_df.empty:
-    st.info("Noch keine Teams vorhanden.")
+    st.info("No existing teams yet.")
 else:
     rows = []
     for team in sorted(teams_df["team"].unique()):
