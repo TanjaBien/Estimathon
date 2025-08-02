@@ -1,0 +1,65 @@
+{
+    "max_attempts": 13,
+    "questions": [
+  {
+    "id": 1,
+    "question": "Die kleinste Zahl $n$, sodass die $n$-te Fibonacci-Zahl die Ziffernfolge „2024“ enthält.",
+    "answer": 270,
+    "info": "Die Zahl lautet: 1194477**2024**9892546555556876969231948173201671228932227072"
+  },
+  {
+    "id": 2,
+    "question": "Die Anzahl buddhistischer Mönche in Thailand im Jahr 2023.",
+    "answer": 257000,
+    "info": "257.000 Mönche"
+  },
+  {
+    "id": 3,
+    "question": "Die Anzahl an Onshore-Windrädern (auf dem Festland) in Deutschland im Jahr 2024.",
+    "answer": 28766,
+    "info": "https://www.wind-energie.de/themen/zahlen-und-fakten/deutschland/"
+  },
+  {
+    "id": 4,
+    "question": "Wie viele Aufrufe hat das Youtube-Video mit den meisten Aufrufen?",
+    "answer": 16100000000,
+    "info": "https://de.wikipedia.org/wiki/Liste_der_meistaufgerufenen_YouTube-Videos"
+  },
+  {
+    "id": 5,
+    "question": "Die Dicke (kleinste Dimension) des Bandes in einer VHS-Kassette, in Millimetern.",
+    "answer": 0.013,
+    "info": ""
+  },
+  {
+    "id": 6,
+    "question": "Das kleinste gemeinsame Vielfache (kgV) von $\\{a, b, c\\}$, wobei $a, b, c$ zufällige ganze Zahlen zwischen 1 und 100 sind, die heute morgen zufällig generiert wurden.",
+    "answer": 2574,
+    "info": "kgV(22, 99, 39) = 2 · 3 · 3 · 11 · 13 = 2574"
+  },
+  {
+    "id": 7,
+    "question": "Verhältnis der Küstenlänge von Kanada zu der von Deutschland.",
+    "answer": 84.59,
+    "info": "Deutschland: 2.389 km, Kanada: 202.080 km, Quelle: https://de.wikipedia.org/wiki/Liste_der_L%C3%A4nder_nach_K%C3%BCstenl%C3%A4nge"
+  },
+  {
+    "id": 8,
+    "question": "Wie viele Nutzer die älter als 55 Jahre sind hat TikTok?",
+    "answer": 83600000,
+    "info": "https://www.doofinder.com/de/blog/tiktok-statistiken"
+  },
+  {
+    "id": 9,
+    "question": "Wie viele kommerzielle Flüge wurden am 6. Juli 2023 durchgeführt?",
+    "answer": 134396,
+    "info": "https://www.watson.ch/international/wirtschaft/242181091-rekord-so-viele-fluege-wie-am-6-juli-2023-gab-es-an-einem-tag-noch-nie"
+  },
+  {
+    "id": 10,
+    "question": "Wie viele Minuten braucht das Licht der Sonne bis es den Planeten Neptun erreicht?",
+    "answer": 250,
+    "info": "4495000000 km / 300000 km/s / 60 = ca. 249,7 Minuten"
+  }
+]
+}
