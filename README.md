@@ -1,7 +1,7 @@
 # Estimaton
 App for automatic evaluation of an Estimathon (Estimate-Marathon ;) ). It allows teams to enter their answers using a team code and question number, along with a minimum and maximum value that they believe contains the true answer. A live scoreboard shows the performance of each team.
 
-## How does it work
+## How does a Estimaton work
 
 - Every teams submits answers using:
   - A **team code**
@@ -16,7 +16,7 @@ App for automatic evaluation of an Estimathon (Estimate-Marathon ;) ). It allows
 - All previous attempts are shown in the table for transparency.
 - Admin can add teams dynamically.
 
-## Scoring Rules
+### Scoring Rules
 
 - A correct answer is one where the true value lies within the submitted interval.
 - For each correct interval, a **ratio** is calculated:  
@@ -25,10 +25,10 @@ App for automatic evaluation of an Estimathon (Estimate-Marathon ;) ). It allows
   $$
 - The total score is calculated as:
   $$
-  \text{score} = \left(10 + \sum_{\text{correct}} \text{ratio}\right) \cdot 2^{\text{#question} - \text{#correctly questions}}
+  \text{score} = \left(10 + \sum_{\text{correct}} \text{ratio}\right) \cdot 2^{\text{\#questions} - \text{\#correct answers}}
   $$
 
-## Usage
+## Estimathon App
 0. configure your own `questions.json` file 
 1. Start the app: `streamlit run estimathon_app.py`
 2. Submit answers using the form:
@@ -38,7 +38,7 @@ App for automatic evaluation of an Estimathon (Estimate-Marathon ;) ). It allows
    - `Max`
 3. View the live scoreboard below the form.
 
-## Example
+### Example
 
 | Team   | Q1     | Q2     | Q3     | Total Score |
 |--------|--------|--------|--------|-------------|

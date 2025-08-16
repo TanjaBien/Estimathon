@@ -67,7 +67,6 @@ def get_status_display(team, history):
 
     for q in QUESTIONS:
         attempts = history[team].get(q, [])
-        attempts = list(dict.fromkeys(attempts))
         attempt_list = []
         for min_val, max_val in attempts:
             if min_val <= true_vals[q] <= max_val:
@@ -167,7 +166,7 @@ if submitted:
         if current_count >= MAX_ATTEMPTS_PER_TEAM:
             st.error(f"Maximum number of {MAX_ATTEMPTS_PER_TEAM} submissions reached for team.")
         else:
-            # Save last submission to CSV (overwrite old)
+            # Save to CSV
             answers_df = load_answers()
             new_row = pd.DataFrame([{
                 "team": team_input,
@@ -177,25 +176,10 @@ if submitted:
             }])
             answers_df = pd.concat([answers_df, new_row], ignore_index=True)
             save_answers(answers_df)
+            
             rebuild_session_state_from_csv()
 
-
-            # Append to session history
-            history = st.session_state.submission_history
-            if team_input not in history:
-                history[team_input] = {}
-            if question_input not in history[team_input]:
-                history[team_input][question_input] = []
-            history[team_input][question_input].append((min_input, max_input))
-
-            # Update submission count
-            counts[team_input] = current_count + 1
-            st.session_state.submission_counts = counts
-
             st.success(f"Answer for team {team_input}, question {question_input} saved!")
-            for key in ["team_input", "min_input", "max_input"]:
-                if key in st.session_state:
-                    del st.session_state[key]
             st.rerun()
 
 # --- UI: Scoreboard ---
